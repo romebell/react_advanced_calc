@@ -8,9 +8,7 @@ const Calculator = props => {
     const [doingMath, setDoingMath] = useState(false)
 
     function enterNumber(e) {
-        let inputArray = input.split('')
-        let lastDig = inputArray[inputArray.length-1]
-            
+        let lastDig = input[input.length]
         if(e.target.value == lastDig && lastDig == '.') {
             
         } else {

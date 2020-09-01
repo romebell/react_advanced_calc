@@ -35,22 +35,30 @@ const Calculator = props => {
         let recentValues = displayArray[displayArray.length - 1];
         if (val === ".")
         {
-            let invalidDecimal = false;
-            for (let i = 0; i < recentValues.length; i++)
+            if (display[display.length - 1] === " " || display.length < 1)
             {
-                if (recentValues[i] === ".")
-                {
-                    invalidDecimal = true;
-                }
-            }
-            if (invalidDecimal === false)
-            {
-                let displayVal = display + val;
+                let displayVal = display + "0" + val;
                 setDisplay(displayVal);
             }
             else
             {
-                alert("ERROR: CANNOT HAVE TWO DECIMALS IN ONE NUMERICAL VALUE")
+                let invalidDecimal = false;
+                for (let i = 0; i < recentValues.length; i++)
+                {
+                    if (recentValues[i] === ".")
+                    {
+                        invalidDecimal = true;
+                    }
+                }
+                if (invalidDecimal === false)
+                {
+                    let displayVal = display + val;
+                    setDisplay(displayVal);
+                }
+                else
+                {
+                    alert("ERROR: CANNOT HAVE TWO DECIMALS IN ONE NUMERICAL VALUE")
+                }
             }
         }
         else if (val === "0")

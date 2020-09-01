@@ -9,15 +9,7 @@ const Calculator = props => {
     let [ops, setOps] = useState("")
     let [message, setMessage] = useState('')
     
-    // let updateCalc = (num) => {
-    //     if (numA.length === 0) {
-    //         console.log(num)
-    //         setNumA(num)
-    //     } else {
-    //         setNumA(numA.concat(num));
-            
-            
-    //     }}
+   
 
     let changeOps = (e) => {
         let currentOps = e.target.innerText;
@@ -37,12 +29,12 @@ const Calculator = props => {
         }
 
     //failed attempt/ half working handle positive/negative
-        // let plusMin = () => {
-        //     if (numA) {
-        //         setNumA(numA*-1)
-        //     }
+        let plusMin = () => {
+            if (numA) {
+                setNumA(numA*-1)
+            }
     
-        // }
+        }
     let clearCalc = () => {
         // setEq()
         setNumA("")
@@ -111,7 +103,7 @@ let operation = (e) =>{
                 <div className="answer-box">{numA + ops + numB  + result}</div>
                 <div className="calc-row">
                     <button className="calc-button calc-button-top" onClick={clearCalc}>AC</button>
-                    <button className="calc-button calc-button-top">+/-</button>
+                    <button className="calc-button calc-button-top"onClick={plusMin}>+/-</button>
                     <button className="calc-button calc-button-top" value=" % " onClick={operation}>%</button>
                     <button className="calc-button calc-button-op" value=" / " onClick={operation}>/</button>
                 </div>

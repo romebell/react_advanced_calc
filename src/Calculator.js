@@ -60,11 +60,11 @@ const Calculator = props => {
             if (operator === '+') {
                 answer = Number(numb1) + Number(numb2);
             } else if (operator === '-') {
-                answer = Number(numb1) - Number(numb2);
+                answer = Number(numb2) - Number(numb1);
             } else if (operator === '*') {
                 answer = Number(numb1) * Number(numb2);
             } else if (operator === '/') {
-                answer = Number(numb1) / Number(numb2);
+                answer = Number(numb2) / Number(numb);
             } else  {
                 setError('Not sure 😜')
             }

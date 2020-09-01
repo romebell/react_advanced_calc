@@ -5,19 +5,16 @@ const Calculator = props => {
 
     const [input, setInput] = useState('')
     const [operator, setOperator] = useState('')
-    const [result, setResult] = useState(0)
+    const [result, setResult] = useState('')
     const [input2, setInput2] = useState('')
 
-    function setNumber(e) { 
-        setResult(e.target.value)
-        console.log(e.target.value)
-
-        if(operator === '') {
-            setInput(input + e.target.value)
+    function setNumber(e) {  
+        e.preventDefault()
+        if(String(input).charAt(0)=== '0') {
+            setInput(e.target.value)
         } else {
-            setInput2(input2 + e.target.value)
+            !operator ? setInput(input + e.target.value) : setInput2(input2 + e.target.value)
         }
-
     }
 
     function whichOp(e) {
@@ -33,37 +30,73 @@ const Calculator = props => {
             let sum = num1 + num2;
             setResult(sum)
             setInput(sum)
+            setOperator('')
+            setInput2('')
         } else if (operator === '-') {
             let sub = num1 - num2;
             setResult(sub)
             setInput(sub)
+            setOperator('')
+            setInput2('')
         } else if (operator === '*') {
             let product = num1 * num2;
             setResult(product)
             setInput(product)
+            setOperator('')
+            setInput2('')
         } else if (operator === '/') {
             let difference = num1/num2;
             setResult(difference)
-            setInput(difference)    
+            setInput(difference)
+            setOperator('')
+            setInput2('')    
         } else if (operator === '%') {
             let percent = num1 % num2;
             setResult(percent)
             setInput(percent)
+            setOperator('')
+            setInput2('')
+        } 
+    }
+
+    function handleZero(e) {
+        if(input && operator && input2 === '') {
+            setInput2(e.target.value + '.')
+        } else if (input !== '' && input2 !== '') {
+            setInput2(input2 + e.target.value)
+        } else if (input === '') {
+            setInput(e.target.value + '.')
+        } else if (input !== '') {
+            setInput(input + e.target.value)
+        } else {
+            setInput2(input2 + e.target.value)
         }
     }
     
     function clear() {
-        setInput('0')
-        setInput2('0')
-        setResult('0')
+        setInput('')
+        setInput2('')
+        setResult('')
         setOperator('')
     }
 
     function negative() {
-        let neg = -input
-        setInput(neg)
+        input === '' ? alert('no') : setInput(Number(input) * (-1))
     }
 
+    function dot(e) {
+        if(input === '') {
+            setInput('0' + e.target.value)
+        } else if(input !== '' && input.includes('.') === false) {
+            setInput(input + e.target.value)
+        } else if(input && operator && input2 === '') {
+            setInput2('0' + e.target.value)
+        } else if(input && operator && input2.includes('.') === false) {
+            setInput2(input2 + e.target.value)
+        } else {
+            alert('No more decimals')
+        }
+    }
 
 
     return (
@@ -71,7 +104,7 @@ const Calculator = props => {
             <h1>React Calculator</h1>
             <div className="calc-container">
                 <p>Values: </p>
-                <div className="answer-box">{result}</div>
+                <div className="answer-box">{input}{operator}{input2}</div>
                 <div className="calc-row">
                     <button onClick={clear} className="calc-button calc-button-top">AC</button>
                     <button onClick={negative} className="calc-button calc-button-top">+/-</button>
@@ -97,8 +130,8 @@ const Calculator = props => {
                     <button onClick={whichOp} value={'+'} className="calc-button calc-button-op">+</button>
                 </div>
                 <div className="calc-row">
-                    <button onClick={setNumber} value={'0'} className="calc-button width-2">0</button>
-                    <button onClick={setNumber} value={'.'} className="calc-button">.</button>
+                    <button onClick={handleZero} value={'0'} className="calc-button width-2">0</button>
+                    <button onClick={dot} value={'.'} className="calc-button">.</button>
                     <button onClick={calculate} className="calc-button calc-button-op">=</button>
                 </div>
             </div>

@@ -50,15 +50,26 @@ const Calculator = props => {
         if (operators === '+') {
             results = parseInt(num) + parseInt(num2)
         } else if (operators === '-') {
-                results = parseInt(num) - parseInt(num2)
+                results = parseInt(num2) - parseInt(num)
             } else if (operators === '*') {
                     results = parseInt(num) * parseInt(num2)
                 } else if (operators === '/') {
-                    results = parseInt(num) / parseInt(num2)
+                    results = parseInt(num2) / parseInt(num)
+                } else {
+                    console.log("there was an error")
                 }
+                setNum(results.toString())
+                setNum2('')
+                setOperators('')
     }
 }
-
+    const decimal = () => {
+        if(!num) {
+            setNum('0.')
+        } else {
+            setNum(num + '.')
+        }
+    }
 
 
     return (
@@ -93,7 +104,7 @@ const Calculator = props => {
                 </div>
                 <div className="calc-row">
                     <button className="calc-button width-2" onClick={firstNum} value='0'>0</button>
-                    <button className="calc-button">.</button>
+                    <button className="calc-button" onClick={decimal}>.</button>
                     <button className="calc-button calc-button-op" onClick={result} >=</button>
                 </div>
             </div>

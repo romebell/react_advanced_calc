@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 const Calculator = props => {
     // Declare state variables
     let [display, setDisplay] = useState("");
+    let [result, setResult] = useState("= TBD");
 
     function clearDisplay()
     {
@@ -65,7 +66,7 @@ const Calculator = props => {
         {
             if (display.length < 1 || display[display.length - 1] === " ")
             {
-                alert("ERROR: VALUE CANNOT START WITH 0 (FOR USING THE VALUE 0, TYPE IN \".0\")")
+                alert("ERROR: VALUE CANNOT START WITH 0 (FOR USING THE VALUE 0, TYPE IN \".\")")
             }
             else
             {
@@ -86,6 +87,90 @@ const Calculator = props => {
         {
             let displayArray = display.split(" ");
             console.log(displayArray);
+
+            for (let i = 0; i < displayArray.length; i++)
+            {
+                if (displayArray[i] === "*")
+                {
+                    let valFrontIndex = i - 1;
+                    let valBehindIndex = i + 1;
+                    while (displayArray[valFrontIndex] === undefined)
+                    {
+                        valFrontIndex--;
+                    }
+                    while (displayArray[valBehindIndex] === undefined)
+                    {
+                        valBehindIndex++;
+                    }
+                    let tempResult = parseFloat(displayArray[valFrontIndex]) * parseFloat(displayArray[valBehindIndex]);
+                    displayArray[valFrontIndex] = undefined;
+                    displayArray[valBehindIndex] = undefined;
+                    displayArray[i] = tempResult;
+                }
+                if (displayArray[i] === "/")
+                {
+                    let valFrontIndex = i - 1;
+                    let valBehindIndex = i + 1;
+                    while (displayArray[valFrontIndex] === undefined)
+                    {
+                        valFrontIndex--;
+                    }
+                    while (displayArray[valBehindIndex] === undefined)
+                    {
+                        valBehindIndex++;
+                    }
+                    let tempResult = parseFloat(displayArray[valFrontIndex]) / parseFloat(displayArray[valBehindIndex]);
+                    displayArray[valFrontIndex] = undefined;
+                    displayArray[valBehindIndex] = undefined;
+                    displayArray[i] = tempResult;
+                }
+            }
+
+            for (let i = 0; i < displayArray.length; i++)
+            {
+                if (displayArray[i] === "+")
+                {
+                    let valFrontIndex = i - 1;
+                    let valBehindIndex = i + 1;
+                    while (displayArray[valFrontIndex] === undefined)
+                    {
+                        valFrontIndex--;
+                    }
+                    while (displayArray[valBehindIndex] === undefined)
+                    {
+                        valBehindIndex++;
+                    }
+                    let tempResult = parseFloat(displayArray[valFrontIndex]) + parseFloat(displayArray[valBehindIndex]);
+                    displayArray[valFrontIndex] = undefined;
+                    displayArray[valBehindIndex] = undefined;
+                    displayArray[i] = tempResult;
+                }
+                if (displayArray[i] === "-")
+                {
+                    let valFrontIndex = i - 1;
+                    let valBehindIndex = i + 1;
+                    while (displayArray[valFrontIndex] === undefined)
+                    {
+                        valFrontIndex--;
+                    }
+                    while (displayArray[valBehindIndex] === undefined)
+                    {
+                        valBehindIndex++;
+                    }
+                    let tempResult = parseFloat(displayArray[valFrontIndex]) - parseFloat(displayArray[valBehindIndex]);
+                    displayArray[valFrontIndex] = undefined;
+                    displayArray[valBehindIndex] = undefined;
+                    displayArray[i] = tempResult;
+                }
+            }
+            console.log(displayArray);
+            for (let i = 0; i < displayArray.length; i++)
+            {
+                if (displayArray[i] !== undefined)
+                {
+                    setResult(`= ${displayArray[i]}`);
+                }
+            }
         }
         else
         {
@@ -98,7 +183,7 @@ const Calculator = props => {
             <h1>React Calculator</h1>
             <div className="calc-container">
                 <p>{display}</p>
-                <div className="answer-box">TBD</div>
+                <div className="answer-box">{result}</div>
                 <div className="calc-row">
                     <button className="calc-button calc-button-top" onClick={clearDisplay}>AC</button>
                     <button className="calc-button calc-button-top">+/-</button>

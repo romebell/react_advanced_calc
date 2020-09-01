@@ -8,14 +8,15 @@ const Calculator = (props) => {
   let [result, setResult] = useState("");
 
   let clearCalc = (e) => {
-    setCurrentNum("");
-    setNum1('')
-    setResult('');
+    setCurrentNum("0");
+    setNum1("");
+    setResult("");
     setOperator("");
   };
 
   let setMath = (e) => {
     e.preventDefault();
+    if(currentNum.length <= 9) {
     if (!isNaN(e.target.value)) {
       if (currentNum === "0") {
         setCurrentNum(e.target.value);
@@ -25,14 +26,15 @@ const Calculator = (props) => {
     } else if (isNaN(e.target.value)) {
       handleOperator(e);
     }
-  };
+  }
+}
 
   let checkPm = (e) => {
-      if(e.target.value === '+/-') {
-          let newNum = Number(currentNum) * -1
-          setCurrentNum(newNum.toString())
-      }
-  }
+    if (e.target.value === "+/-") {
+      let newNum = Number(currentNum) * -1;
+      setCurrentNum(newNum.toString());
+    }
+  };
 
   let handleOperator = (e) => {
     if (operator && !currentNum) {
@@ -46,37 +48,38 @@ const Calculator = (props) => {
   };
   let doMath = (e) => {
     e.preventDefault();
-    if (!num1 || !operator) {
-      alert("That's not how math works");
-    } else if (currentNum && num1 && operator === "+") {
+    if (currentNum && num1 && operator === "+") {
       let newResult = Number(num1) + Number(currentNum);
       setResult(newResult);
-      setCurrentNum("");
+      setCurrentNum("0");
       setNum1(newResult);
       console.log(result);
     } else if (currentNum && num1 && operator === "-") {
       let newResult = Number(num1) - Number(currentNum);
       setResult(newResult);
-      setCurrentNum("");
-      setNum1(newResult)
+      setCurrentNum("0");
+      setNum1(newResult);
+      console.log(num1);
+      console.log(currentNum);
+      console.log(operator);
       console.log(result);
     } else if (currentNum && num1 && operator === "*") {
       let newResult = Number(num1) * Number(currentNum);
       setResult(newResult);
-      setCurrentNum("");
-      setNum1(newResult)
+      setCurrentNum("0");
+      setNum1(newResult);
       console.log(result);
     } else if (currentNum && num1 && operator === "/") {
       let newResult = Number(num1) / Number(currentNum);
       setResult(newResult);
-      setCurrentNum("");
-      setNum1(newResult)
+      setCurrentNum("0");
+      setNum1(newResult);
       console.log(result);
     } else if (currentNum && num1 && operator === "%") {
       let newResult = Number(num1) % Number(currentNum);
       setResult(newResult);
-      setCurrentNum("");
-      setNum1(newResult)
+      setCurrentNum("0");
+      setNum1(newResult);
       console.log(result);
     }
   };
@@ -85,13 +88,17 @@ const Calculator = (props) => {
     <div className="container">
       <h1>React Calculator</h1>
       <div className="calc-container">
-        <p>{currentNum}</p>
+        <p className="input">{currentNum}</p>
         <div className="answer-box">{result}</div>
         <div className="calc-row">
           <button className="calc-button calc-button-top" onClick={clearCalc}>
             AC
           </button>
-          <button value={'+/-'} className="calc-button calc-button-top" onClick={checkPm}>
+          <button
+            value={"+/-"}
+            className="calc-button calc-button-top"
+            onClick={checkPm}
+          >
             +/-
           </button>
           <button

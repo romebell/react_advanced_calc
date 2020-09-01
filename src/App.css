@@ -16,6 +16,10 @@
   background-color: #ccc;
 }
 
+.input {
+  height: 25px;
+}
+
 .width-2 {
   width: 70px !important;
 }

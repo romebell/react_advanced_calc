@@ -76,19 +76,19 @@ const Calculator = props => {
     function equare() {
         if (operator === '+') {
             setInput (
-                Number(previousNum)+Number(input)
+                String(Number(previousNum)+Number(input))
             )
         } else if (operator === '-') {
             setInput (
-                Number(previousNum)-Number(input)
+                String(Number(previousNum)-Number(input))
             )
         } else if (operator === '*') {
             setInput (
-                Number(previousNum)*Number(input)
+                String(Number(previousNum)*Number(input))
             )
         } else if (operator === '/'){
             setInput (
-                Number(previousNum)/Number(input)
+                String(Number(previousNum)/Number(input))
             )
         }
         // Reuse the result
@@ -100,9 +100,9 @@ const Calculator = props => {
         setInput(Number(input/100))
     }
 
-    // negative +/- BUTTON
+    // NEGATIVE +/- BUTTON
     function negative() {
-        if (input[0] !== '-') {
+        if (input.indexOf('-') === -1) {
             setInput('-'+input)
         }
         else {

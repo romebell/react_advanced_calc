@@ -11,14 +11,26 @@ const Calculator = props => {
 
     function createOperator(oper)
     {
-        let displayWithOper = display + " " + oper + " ";
-        setDisplay(displayWithOper);
+        if (display[display.length - 2] !== "+" && 
+            display[display.length - 2] !== "-" && 
+            display[display.length - 2] !== "*" && 
+            display[display.length - 2] !== "/")
+        {
+            let displayWithOper = display + " " + oper + " ";
+            setDisplay(displayWithOper);
+        }
     }
 
     function concatNumber(val)
     {
         let displayVal = display + val;
         setDisplay(displayVal);
+    }
+
+    function getResult()
+    {
+        let displayArray = display.split(" ");
+        console.log(displayArray);
     }
     
     return (
@@ -54,7 +66,7 @@ const Calculator = props => {
                 <div className="calc-row">
                     <button className="calc-button width-2">0</button>
                     <button className="calc-button">.</button>
-                    <button className="calc-button calc-button-op">=</button>
+                    <button className="calc-button calc-button-op" onClick={() => getResult()}>=</button>
                 </div>
             </div>
         </div>

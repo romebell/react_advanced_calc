@@ -26,7 +26,6 @@ const Calculator = (props) => {
       handleOperator(e);
     }
   };
-  
 
   let checkPm = (e) => {
     if (e.target.value === "+/-") {
@@ -42,9 +41,9 @@ const Calculator = (props) => {
       setNum1(currentNum);
       setOperator(e.target.value);
       setCurrentNum("");
-      console.log(operator);
     }
   };
+
   let doMath = (e) => {
     e.preventDefault();
     if (currentNum && num1 && operator === "+") {
@@ -52,34 +51,26 @@ const Calculator = (props) => {
       setResult(newResult);
       setCurrentNum("");
       setNum1(newResult);
-      console.log(result);
     } else if (currentNum && num1 && operator === "-") {
       let newResult = Number(num1) - Number(currentNum);
       setResult(newResult);
-      setCurrentNum("0");
+      setCurrentNum("");
       setNum1(newResult);
-      console.log(num1);
-      console.log(currentNum);
-      console.log(operator);
-      console.log(result);
     } else if (currentNum && num1 && operator === "*") {
       let newResult = Number(num1) * Number(currentNum);
       setResult(newResult);
       setCurrentNum("");
       setNum1(newResult);
-      console.log(result);
     } else if (currentNum && num1 && operator === "/") {
       let newResult = Number(num1) / Number(currentNum);
       setResult(newResult);
       setCurrentNum("");
       setNum1(newResult);
-      console.log(result);
     } else if (currentNum && num1 && operator === "%") {
       let newResult = Number(num1) % Number(currentNum);
       setResult(newResult);
       setCurrentNum("");
-      setNum1(newResult);
-      console.log(result);
+      setNum1(newResult.toString());
     }
   };
 

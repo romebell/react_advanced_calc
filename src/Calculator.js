@@ -26,6 +26,7 @@ const Calculator = (props) => {
       handleOperator(e);
     }
   };
+  
 
   let checkPm = (e) => {
     if (e.target.value === "+/-") {

@@ -16,10 +16,11 @@ const Calculator = (props) => {
 
   let setMath = (e) => {
     e.preventDefault();
-    if (!isNaN(e.target.value)) {
+    if (!isNaN(e.target.value) || e.target.value === '.') {
       if (currentNum === "0") {
         setCurrentNum(e.target.value);
       } else {
+        if(currentNum.includes('.') && e.target.value === '.') { return }
         setCurrentNum(currentNum + e.target.value);
       }
     } else if (isNaN(e.target.value)) {

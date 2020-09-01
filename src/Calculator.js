@@ -4,8 +4,12 @@ const Calculator = props => {
     // Declare state variables
     const [value, setValue] = useState('');
 
-    function displayNum (num) {
+    function displayNum(num) {
         setValue(value + num)
+    }
+
+    function clearVal(e) {
+        setValue('')
     }
 
     return (
@@ -15,7 +19,9 @@ const Calculator = props => {
                 <p>Values: </p>
                 <div className="answer-box">{value}</div>
                 <div className="calc-row">
-                    <button className="calc-button calc-button-top">AC</button>
+                    <button className="calc-button calc-button-top"
+                        onClick={(e) => {clearVal(e)}}
+                    >AC</button>
                     <button className="calc-button calc-button-top">+/-</button>
                     <button className="calc-button calc-button-top">%</button>
                     <button className="calc-button calc-button-op">/</button>

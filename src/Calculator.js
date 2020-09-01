@@ -95,6 +95,21 @@ const Calculator = props => {
         setOperator('')
     }
 
+    // PERCENT % BUTTON
+    function percent() {
+        setInput(Number(input/100))
+    }
+
+    // negative +/- BUTTON
+    function negative() {
+        if (input[0] !== '-') {
+            setInput('-'+input)
+        }
+        else {
+            setInput(input.substr(1))
+        }
+    }
+
     return (
         <div className="container">
             <h1>React Calculator</h1>
@@ -102,8 +117,8 @@ const Calculator = props => {
                 <Input input={input} previousNum={previousNum} />
                 <div className="calc-row">
                     <button className="calc-button calc-button-top" onClick={clear}>AC</button>
-                    <button className="calc-button calc-button-top">+/-</button> 
-                    <button className="calc-button calc-button-top">%</button>
+                    <button className="calc-button calc-button-top" onClick={negative}>+/-</button> 
+                    <button className="calc-button calc-button-top" onClick={percent}>%</button>
                     <button className="calc-button calc-button-op" onClick={divide}>/</button>
                 </div>
                 <div className="calc-row">

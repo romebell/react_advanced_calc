@@ -29,8 +29,11 @@ const Calculator = props => {
 
     function getResult()
     {
-        let displayArray = display.split(" ");
-        console.log(displayArray);
+        if (display[display.length - 1] !== " ")
+        {
+            let displayArray = display.split(" ");
+            console.log(displayArray);
+        }
     }
     
     return (

@@ -29,11 +29,15 @@ const Calculator = props => {
         }
 
     //failed attempt/ half working handle positive/negative
-        let plusMin = () => {
-            if (numA) {
-                setNumA(numA*-1)
-            }
+        // let plusMin = () => {
+        //     if (numA) {
+        //         setNumA(numA*-1)
+        //     }
     
+        // }
+
+        const plusMin = () => {
+            numA === '' ? console.log('nah') : setNumA(Number(numA)* (-1))
         }
     let clearCalc = () => {
         // setEq()

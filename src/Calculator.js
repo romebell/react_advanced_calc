@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const Calculator = props => {
     // Declare state variables
-    let [display, setDisplay] = useState("Yeet");
+    let [display, setDisplay] = useState("");
 
     function clearDisplay()
     {
@@ -11,13 +11,21 @@ const Calculator = props => {
 
     function createOperator(oper)
     {
-        if (display[display.length - 2] !== "+" && 
+        if (display.length < 1)
+        {
+            alert("ERROR: CANNOT START EXPRESSION WITH OPERATOR");
+        }
+        else if (display[display.length - 2] !== "+" && 
             display[display.length - 2] !== "-" && 
             display[display.length - 2] !== "*" && 
             display[display.length - 2] !== "/")
         {
             let displayWithOper = display + " " + oper + " ";
             setDisplay(displayWithOper);
+        }
+        else
+        {
+            alert("ERROR: CANNOT USE TWO OPERATORS SEQUENTIALLY");
         }
     }
 
@@ -33,6 +41,10 @@ const Calculator = props => {
         {
             let displayArray = display.split(" ");
             console.log(displayArray);
+        }
+        else
+        {
+            alert("ERROR: CANNOT END EXPRESSION WITH OPERATOR");
         }
     }
     

@@ -99,7 +99,7 @@ let operation = (e) =>{
         <div className="container">
             <h1>React-ulator 2.0</h1>
             <div className="calc-container">
-                <p>Values: </p>
+                <p>LET'S MATH </p>
                 <div className="answer-box">{numA + ops + numB  + result}</div>
                 <div className="calc-row">
                     <button className="calc-button calc-button-top" onClick={clearCalc}>AC</button>

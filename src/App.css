@@ -1,23 +1,30 @@
 .container {
   text-align: center;
   margin-top: 10px;
+  background-image: url("https://st2.depositphotos.com/3580719/11779/v/950/depositphotos_117795484-stock-illustration-seamless-pattern-with-formulas-and.jpg")
+  
 }
 .calc-container {
-  border: 1px solid #333;
-  border-radius: 2px;
+  border: 3px solid #333;
+  border-radius: 19px;
   display: inline-block;
   background-color: #ddd;
+  height:637px;
+  width:400px
 }
 
 .calc-button {
-  width: 35px;
-  min-height: 10px;
+  width: 95px;
+  min-height: 95px;
   color: #333;
   background-color: #ccc;
+  font-size: 60px;
+  border-radius: 19px;
 }
 
 .width-2 {
-  width: 70px !important;
+  width: 120px !important;
+  border-radius: 19px;
 }
 
 .calc-button-op {
@@ -26,13 +33,18 @@
 }
 
 .calc-button-top {
-  color: #333;
-  background-color: #aaa;
+  color: rgb(46, 45, 45);
+  background-color: rgb(156, 148, 148);
 }
 
 .answer-box {
   background-color: #333;
   color: #fff;
   text-align: right;
-  min-height: 25px;
+  min-height: 100px;
+  font-size: 60px;
+  border-radius: 19px;
+}
+p{
+  font-size:20px
 }

@@ -2,46 +2,138 @@ import React, { useState } from 'react'
 
 const Calculator = props => {
     // Declare state variables
+    // let [eq, setEq] = useState() 
+    let [numA, setNumA] = useState("")  
+    let [numB, setNumB] = useState("")
+    let [result, setResult] = useState("0")
+    let [ops, setOps] = useState("")
+    let [message, setMessage] = useState('')
+    
+    // let updateCalc = (num) => {
+    //     if (numA.length === 0) {
+    //         console.log(num)
+    //         setNumA(num)
+    //     } else {
+    //         setNumA(numA.concat(num));
+            
+            
+    //     }}
+        
+        let solution = () => {
+            // setNumA(null)
+            // setNumB(null)
+            // setOps(null)
+            if (ops === '+') setResult(parseInt(numA)  + parseInt(numB))
+            else if (ops === '-') setResult(parseInt(numA) - parseInt(numB))
+            else if (ops === 'x') setResult(parseInt(numA) * parseInt(numB))
+            else if (ops === '/') setResult(parseInt(numA)  / parseInt(numB))
+        }
 
+    
+        let plusMin = () => {
+            if (numA) {
+                setNumA(numA*-1)
+            }
+    
+        }
+    let clearCalc = () => {
+        // setEq()
+        setNumA("")
+        setNumB("")
+        setResult("")
+        setOps("")
+        console.log("clear this calculator")
+    }
+    
+    
+    // let operation = (e) => {
+    //     if (!numA) {
+    //         console.log('we need a number please')
+    //     } else if (ops) {
+    //         console.log('ops clicked')
+    //     } else {
+    //         setOps(e.target.value)
+    //         setNumB("0")
+            
+    //         console.log(numB)
+    //         setNumA('')
+    //     }
+    // }
 
+    let updateCalc =(number)=>{
+        if (ops){
+            if(numA.length === 0){
+                setNumA(number)
+                console.log(numA)
+            }else{
+                setNumA(numA.concat(number))
+            }
+        // } else if(!numA){
+        //     console.log("no numA")
+        // }
+        }else{
+            if(numB.length === 0){
+                setNumB(number)
+                
+            }else{
+                setNumB(numB.concat(number))
+            }
+        
+    }
+}
+
+let operation = (e) =>{
+    let op = e.target.innerText
+    console.log(op)
+    setOps(op)
+}
+
+    const dec = () => {
+        if (!numA) {
+            setNumA('0.')
+        } else {
+            setNumA(numA+'.')
+        }
+    }
     return (
         <div className="container">
-            <h1>React Calculator</h1>
+            <h1>React-ulator 2.0</h1>
             <div className="calc-container">
                 <p>Values: </p>
-                <div className="answer-box">TBD</div>
+                <div className="answer-box">{numA}</div>
                 <div className="calc-row">
-                    <button className="calc-button calc-button-top">AC</button>
-                    <button className="calc-button calc-button-top">+/-</button>
-                    <button className="calc-button calc-button-top">%</button>
-                    <button className="calc-button calc-button-op">/</button>
+                    <button className="calc-button calc-button-top" onClick={clearCalc}>AC</button>
+                    <button className="calc-button calc-button-top"onClick={plusMin}>+/-</button>
+                    <button className="calc-button calc-button-top" value=" % " onClick={operation}>%</button>
+                    <button className="calc-button calc-button-op" value=" / " onClick={operation}>/</button>
                 </div>
                 <div className="calc-row">
-                    <button className="calc-button">7</button>
-                    <button className="calc-button">8</button>
-                    <button className="calc-button">9</button>
-                    <button className="calc-button calc-button-op">x</button>
+                    <button className="calc-button" onClick={() => {updateCalc("7")}} value="7">7</button>
+                    <button className="calc-button" onClick={() => {updateCalc("8")}} value="8">8</button>
+                    <button className="calc-button" onClick={() => {updateCalc("9")}} value="9">9</button>
+                    <button className="calc-button calc-button-op" value=" * " onClick={operation}>x</button>
                 </div>
                 <div className="calc-row">
-                    <button className="calc-button">4</button>
-                    <button className="calc-button">5</button>
-                    <button className="calc-button">6</button>
-                    <button className="calc-button calc-button-op">-</button>
+                    <button className="calc-button" onClick={() => {updateCalc("4")}} value="4">4</button>
+                    <button className="calc-button" onClick={() => {updateCalc("5")}} value="5">5</button>
+                    <button className="calc-button" onClick={() => {updateCalc("6")}} value="6">6</button>
+                    <button className="calc-button calc-button-op" value=" - " onClick={operation}>-</button>
                 </div>
                 <div className="calc-row">
-                    <button className="calc-button">1</button>
-                    <button className="calc-button">2</button>
-                    <button className="calc-button">3</button>
-                    <button className="calc-button calc-button-op">+</button>
+                    <button className="calc-button" onClick={() => {updateCalc("1")}} value="1">1</button>
+                    <button className="calc-button" onClick={() => {updateCalc("2")}} value="2">2</button>
+                    <button className="calc-button" onClick={() => {updateCalc("3")}} value="3">3</button>
+                    <button className="calc-button calc-button-op" onClick={operation}  >+</button>
                 </div>
                 <div className="calc-row">
                     <button className="calc-button width-2">0</button>
-                    <button className="calc-button">.</button>
-                    <button className="calc-button calc-button-op">=</button>
+                    <button className="calc-button" onClick={dec}>.</button>
+                  <button className="calc-button calc-button-op" onClick={solution}>=</button>
                 </div>
             </div>
         </div>
     )
-}
+    }
+    
 
 export default Calculator

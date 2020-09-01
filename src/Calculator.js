@@ -12,6 +12,8 @@ const Calculator = props => {
         }
     }
 
+
+
     const minus = () => {
         if (num) {
             setNum(num * -1)
@@ -63,13 +65,15 @@ const Calculator = props => {
                 setOperators('')
     }
 }
-    const decimal = () => {
-        if(!num) {
-            setNum('0.')
-        } else {
-            setNum(num + '.')
-        }
-    }
+
+
+    // const decimal = () => {
+    //     if(num[num.length - 1] === '.') {
+    //         setNum('0.')
+    //     } else {
+    //         setNum(parseFloat(num + '.'))
+    //     }
+    // }
 
 
     return (
@@ -104,7 +108,7 @@ const Calculator = props => {
                 </div>
                 <div className="calc-row">
                     <button className="calc-button width-2" onClick={firstNum} value='0'>0</button>
-                    <button className="calc-button" onClick={decimal}>.</button>
+                    <button className="calc-button">.</button>
                     <button className="calc-button calc-button-op" onClick={result} >=</button>
                 </div>
             </div>

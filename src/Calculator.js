@@ -2,16 +2,21 @@ import React, { useState } from 'react'
 
 const Calculator = props => {
     // Declare state variables
+    let [result, setResult] = useState("Yeet");
 
-
+    function clearDisplay()
+    {
+        setResult("");
+    }
+    
     return (
         <div className="container">
             <h1>React Calculator</h1>
             <div className="calc-container">
-                <p>Values: </p>
+                <p>{result}</p>
                 <div className="answer-box">TBD</div>
                 <div className="calc-row">
-                    <button className="calc-button calc-button-top">AC</button>
+                    <button className="calc-button calc-button-top" onClick={clearDisplay}>AC</button>
                     <button className="calc-button calc-button-top">+/-</button>
                     <button className="calc-button calc-button-top">%</button>
                     <button className="calc-button calc-button-op">/</button>

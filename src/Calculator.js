@@ -3,22 +3,52 @@ import React, { useState } from 'react'
 const Calculator = props => {
     // Declare state variables
 
-    const [input, setInput] = useState('0')
+    const [input, setInput] = useState(0)
     const [operator, setOperator] = useState('')
-    const [result, setResult] = useState('0')
+    const [result, setResult] = useState(0)
 
     function setNumber(e) { 
-        setInput(e.target.value)
-        console.log(input)
-        setResult(input)
+        setResult(e.target.value)
+        console.log(e.target.value)
+
+        if(input === '0') {
+            setInput(e.target.value)
+        } else {
+            let newInput = `${input}${e.target.value}`
+            setInput(newInput)
+        }
     }
 
     function whichOp(e) {
-
+        setOperator(e.target.value)
+        console.log(operator)
     }
 
     function calculate() {
+        let num1 = Number(result)
+        let num2 = Number(input)
 
+        if(operator === '+') {
+            let sum = num1 + num2;
+            setResult(sum)
+            setInput(sum)
+        } else if (operator === '-') {
+            let sub = num1 - num2;
+            setResult(sub)
+            setInput(sub)
+        } else if (operator === '*') {
+            let product = num1 * num2;
+            setResult(product)
+            setInput(product)
+        } else if (operator === '/') {
+            let difference = num1/num2;
+            setResult(difference)
+            setInput(difference)    
+        } else if (operator === '%') {
+            let percent = num1 % num2;
+            setResult(percent)
+            setInput(percent)
+        }
     }
     
     function clear() {
@@ -28,7 +58,8 @@ const Calculator = props => {
     }
 
     function negative() {
-
+        let neg = -input
+        setInput(neg)
     }
 
 

@@ -85,10 +85,10 @@ const Calculator = (props) => {
         }
 
         //Set the result to display
-        let newresult = result.slice(0, 8)
+        let newResult = result.slice(0, 8)
 
         // Update state
-        setResult(newresult)
+        setResult(newResult)
         setError('')
         }
     }

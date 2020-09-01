@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 const Calculator = props => {
     // Declare state variables
     let [display, setDisplay] = useState("");
-    let [result, setResult] = useState("= TBD");
 
     function clearDisplay()
     {
@@ -168,7 +167,7 @@ const Calculator = props => {
             {
                 if (displayArray[i] !== undefined)
                 {
-                    setResult(`= ${displayArray[i]}`);
+                    setDisplay(`${displayArray[i]}`);
                 }
             }
         }
@@ -182,8 +181,7 @@ const Calculator = props => {
         <div className="container">
             <h1>React Calculator</h1>
             <div className="calc-container">
-                <p>{display}</p>
-                <div className="answer-box">{result}</div>
+                <div className="answer-box">{display}</div>
                 <div className="calc-row">
                     <button className="calc-button calc-button-top" onClick={clearDisplay}>AC</button>
                     <button className="calc-button calc-button-top">+/-</button>

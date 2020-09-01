@@ -2,25 +2,30 @@ import React, { useState } from 'react'
 
 const Calculator = props => {
     // Declare state variables
-    let [result, setResult] = useState("Yeet");
-    let [operator, setOperator] = useState("");
+    let [display, setDisplay] = useState("Yeet");
 
     function clearDisplay()
     {
-        setResult("");
-        setOperator("");
+        setDisplay("");
     }
 
     function createOperator(oper)
     {
-        setOperator(oper);
+        let displayWithOper = display + " " + oper + " ";
+        setDisplay(displayWithOper);
+    }
+
+    function concatNumber(val)
+    {
+        let displayVal = display + val;
+        setDisplay(displayVal);
     }
     
     return (
         <div className="container">
             <h1>React Calculator</h1>
             <div className="calc-container">
-                <p>{result}{operator}</p>
+                <p>{display}</p>
                 <div className="answer-box">TBD</div>
                 <div className="calc-row">
                     <button className="calc-button calc-button-top" onClick={clearDisplay}>AC</button>
@@ -29,21 +34,21 @@ const Calculator = props => {
                     <button className="calc-button calc-button-op" onClick={() => createOperator("/")}>/</button>
                 </div>
                 <div className="calc-row">
-                    <button className="calc-button">7</button>
-                    <button className="calc-button">8</button>
-                    <button className="calc-button">9</button>
+                    <button className="calc-button" onClick={() => concatNumber("7")}>7</button>
+                    <button className="calc-button" onClick={() => concatNumber("8")}>8</button>
+                    <button className="calc-button" onClick={() => concatNumber("9")}>9</button>
                     <button className="calc-button calc-button-op" onClick={() => createOperator("*")}>x</button>
                 </div>
                 <div className="calc-row">
-                    <button className="calc-button">4</button>
-                    <button className="calc-button">5</button>
-                    <button className="calc-button">6</button>
+                    <button className="calc-button" onClick={() => concatNumber("4")}>4</button>
+                    <button className="calc-button" onClick={() => concatNumber("5")}>5</button>
+                    <button className="calc-button" onClick={() => concatNumber("6")}>6</button>
                     <button className="calc-button calc-button-op" onClick={() => createOperator("-")}>-</button>
                 </div>
                 <div className="calc-row">
-                    <button className="calc-button">1</button>
-                    <button className="calc-button">2</button>
-                    <button className="calc-button">3</button>
+                    <button className="calc-button" onClick={() => concatNumber("1")}>1</button>
+                    <button className="calc-button" onClick={() => concatNumber("2")}>2</button>
+                    <button className="calc-button" onClick={() => concatNumber("3")}>3</button>
                     <button className="calc-button calc-button-op" onClick={() => createOperator("+")}>+</button>
                 </div>
                 <div className="calc-row">

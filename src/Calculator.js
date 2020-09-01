@@ -4,18 +4,22 @@ import Input from './Input'
 const Calculator = props => {
     // Declare state variables
     var [input, setInput] = useState('')
-    var [firstNum, setFirstNum] = useState('')
-    var [secondNum, setSecondNum] = useState('')
+    var [currentNum, setCurrentNum] = useState('')
+    var [previousNum, setPreviousNum] = useState('')
     var [operator, setOperator] = useState('')
     var numbers = ['0','1','2','3','4','5','6','7','8','9']
 
-    // Handle Click
-    // handleClick() doesn't work
-     function handleClick(e) {
-        console.log(e.target.value);
-        // if (numbers.includes(e)) {
-            // setInput (input + val)
-        // }
+    // DECIMAL . BUTTON
+    function addDecimal() {
+        if (input.indexOf('.') === -1) {
+            setInput(input+'.')
+        }
+    }
+
+    // AC CLEAR BUTTON
+    function clear() {
+        setInput('')
+        setOperator('')
     }
 
     return (
@@ -24,7 +28,7 @@ const Calculator = props => {
             <div className="calc-container">
                 <Input input={input} />
                 <div className="calc-row">
-                    <button className="calc-button calc-button-top" onClick={() => setInput(0)}>AC</button>
+                    <button className="calc-button calc-button-top" onClick={clear}>AC</button>
                     <button className="calc-button calc-button-top">+/-</button>
                     <button className="calc-button calc-button-top">%</button>
                     <button className="calc-button calc-button-op">/</button>
@@ -49,7 +53,7 @@ const Calculator = props => {
                 </div>
                 <div className="calc-row">
                     <button className="calc-button width-2" onClick={() => setInput(input+0)}>0</button>
-                    <button className="calc-button">.</button>
+                    <button className="calc-button" onClick={addDecimal}>.</button>
                     <button className="calc-button calc-button-op">=</button>
                 </div>
             </div>

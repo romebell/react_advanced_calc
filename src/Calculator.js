@@ -11,8 +11,19 @@ const Calculator = props => {
 
     // DECIMAL . BUTTON
     function addDecimal() {
+        // add only if input doesn't have a decimal
         if (input.indexOf('.') === -1) {
             setInput(input+'.')
+        }
+        if (input === ''){
+            setInput(input+'0.')
+        }
+    }
+
+    // ZERO 0 BUTTON
+    function addZero() {
+        if (input !== '') {
+            setInput(input+'0')
         }
     }
 
@@ -52,7 +63,7 @@ const Calculator = props => {
                     <button className="calc-button calc-button-op">+</button>
                 </div>
                 <div className="calc-row">
-                    <button className="calc-button width-2" onClick={() => setInput(input+0)}>0</button>
+                    <button className="calc-button width-2" onClick={addZero}>0</button>
                     <button className="calc-button" onClick={addDecimal}>.</button>
                     <button className="calc-button calc-button-op">=</button>
                 </div>

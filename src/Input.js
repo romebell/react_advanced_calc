@@ -1,5 +1,6 @@
 import React from 'react'
 
 export default function Input (props) {
-    return <div className="answer-box">{props.input}</div>
+    let input = (props.input) ? props.input : 0
+    return <div className="answer-box">{input}</div>
 }

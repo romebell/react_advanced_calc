@@ -16,7 +16,6 @@ const Calculator = (props) => {
 
   let setMath = (e) => {
     e.preventDefault();
-    if(currentNum.length <= 9) {
     if (!isNaN(e.target.value)) {
       if (currentNum === "0") {
         setCurrentNum(e.target.value);
@@ -26,8 +25,7 @@ const Calculator = (props) => {
     } else if (isNaN(e.target.value)) {
       handleOperator(e);
     }
-  }
-}
+  };
 
   let checkPm = (e) => {
     if (e.target.value === "+/-") {
@@ -51,7 +49,7 @@ const Calculator = (props) => {
     if (currentNum && num1 && operator === "+") {
       let newResult = Number(num1) + Number(currentNum);
       setResult(newResult);
-      setCurrentNum("0");
+      setCurrentNum("");
       setNum1(newResult);
       console.log(result);
     } else if (currentNum && num1 && operator === "-") {
@@ -66,19 +64,19 @@ const Calculator = (props) => {
     } else if (currentNum && num1 && operator === "*") {
       let newResult = Number(num1) * Number(currentNum);
       setResult(newResult);
-      setCurrentNum("0");
+      setCurrentNum("");
       setNum1(newResult);
       console.log(result);
     } else if (currentNum && num1 && operator === "/") {
       let newResult = Number(num1) / Number(currentNum);
       setResult(newResult);
-      setCurrentNum("0");
+      setCurrentNum("");
       setNum1(newResult);
       console.log(result);
     } else if (currentNum && num1 && operator === "%") {
       let newResult = Number(num1) % Number(currentNum);
       setResult(newResult);
-      setCurrentNum("0");
+      setCurrentNum("");
       setNum1(newResult);
       console.log(result);
     }

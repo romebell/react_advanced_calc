@@ -31,8 +31,45 @@ const Calculator = props => {
 
     function concatNumber(val)
     {
-        let displayVal = display + val;
-        setDisplay(displayVal);
+        let displayArray = display.split(" ")
+        let recentValues = displayArray[displayArray.length - 1];
+        if (val === ".")
+        {
+            let invalidDecimal = false;
+            for (let i = 0; i < recentValues.length; i++)
+            {
+                if (recentValues[i] === ".")
+                {
+                    invalidDecimal = true;
+                }
+            }
+            if (invalidDecimal === false)
+            {
+                let displayVal = display + val;
+                setDisplay(displayVal);
+            }
+            else
+            {
+                alert("ERROR: CANNOT HAVE TWO DECIMALS IN ONE NUMERICAL VALUE")
+            }
+        }
+        else if (val === "0")
+        {
+            if (display.length < 1 || display[display.length - 1] === " ")
+            {
+                alert("ERROR: VALUE CANNOT START WITH 0 (FOR USING THE VALUE 0, TYPE IN \".0\")")
+            }
+            else
+            {
+                let displayVal = display + val;
+                setDisplay(displayVal);
+            }
+        }
+        else
+        {
+            let displayVal = display + val;
+            setDisplay(displayVal);
+        }
     }
 
     function getResult()
@@ -79,8 +116,8 @@ const Calculator = props => {
                     <button className="calc-button calc-button-op" onClick={() => createOperator("+")}>+</button>
                 </div>
                 <div className="calc-row">
-                    <button className="calc-button width-2">0</button>
-                    <button className="calc-button">.</button>
+                    <button className="calc-button width-2" onClick={() => concatNumber("0")}>0</button>
+                    <button className="calc-button" onClick={() => concatNumber(".")}>.</button>
                     <button className="calc-button calc-button-op" onClick={() => getResult()}>=</button>
                 </div>
             </div>
